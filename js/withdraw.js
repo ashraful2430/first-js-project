@@ -1,37 +1,36 @@
 document.getElementById('btn-withdraw').addEventListener('click', function () {
-    const withdrawField = document.getElementById('withdraw-field');
-    const withdrawFieldString = withdrawField.value;
-    const newWithdraw = parseFloat(withdrawFieldString);
+    const withdrawFieldElement = document.getElementById('withdraw-field');
+    const withdrawFieldElementString = withdrawFieldElement.value;
+    const newWithdraw = parseFloat(withdrawFieldElementString);
 
-    withdrawField.value = '';
+    withdrawFieldElement.value = '';
 
-    if (isNaN(newWithdraw)){
+    if (isNaN(newWithdraw)) {
         alert('ata bank re bokachoda number de word na ')
         return;
     }
 
     const withdrawTotalElement = document.getElementById('withdraw-total');
     const withdrawTotalElementString = withdrawTotalElement.innerText;
-    const newWithdrawTotal = parseFloat(withdrawTotalElementString);
-
-    
+    const previousTotalWithdraw = parseFloat(withdrawTotalElementString);
 
 
-    const balanceTotalElement = document.getElementById('balance-total');
-    const balanceTotalElementString = balanceTotalElement.innerText;
-    const previousBalanceTotal = parseFloat(balanceTotalElementString);
 
-    if (newWithdraw > previousBalanceTotal) {
-        alert('tor bape rakhse ato taka bank a? ')
+    const balanceField = document.getElementById('balance-total');
+    const balanceFieldString = balanceField.innerText;
+    const newBalance = parseFloat(balanceFieldString);
+
+    if (newWithdraw > newBalance) {
+        alert('hedar put')
         return;
     }
 
-    const totalWithdraw = newWithdraw + newWithdrawTotal;
-    withdrawTotalElement.innerText = totalWithdraw;
 
+    const newWithdrawAmount = newWithdraw + previousTotalWithdraw;
+    withdrawTotalElement.innerText = newWithdrawAmount;
 
-    const finalWithdraw = previousBalanceTotal - newWithdraw;
-    balanceTotalElement.innerText = finalWithdraw;
+    const newBalanceField = newBalance - newWithdraw;
+    balanceField.innerText = newBalanceField;
 
 
 
